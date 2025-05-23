@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cul0f7nfqkj45"]
+
+[ext_resource type="Script" uid="uid://cr6x3ico2tjfc" path="res://Scripts/weapon.gd" id="1_m5ws0"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_m5ws0")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1, -10)

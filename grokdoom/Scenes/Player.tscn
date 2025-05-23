@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm3le6xjflyxx"]
+
+[ext_resource type="Script" uid="uid://cdn0fk8ytl5wh" path="res://Scripts/player.gd" id="1_rpqav"]
+[ext_resource type="PackedScene" uid="uid://cul0f7nfqkj45" path="res://Scenes/Weapon.tscn" id="2_kyqiw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rpqav"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyqiw"]
+albedo_color = Color(0, 0.745098, 0.937255, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gntrk"]
+material = SubResource("StandardMaterial3D_kyqiw")
+
+[sub_resource type="Environment" id="Environment_kyqiw"]
+ambient_light_color = Color(0.77084, 0.770839, 0.770839, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rpqav")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rpqav")
+
+[node name="WeaponHolder" type="Node3D" parent="."]
+
+[node name="Pistol" parent="WeaponHolder" instance=ExtResource("2_kyqiw")]
+
+[node name="Shotgun" parent="WeaponHolder" instance=ExtResource("2_kyqiw")]
+visible = false
+weaponType = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_gntrk")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.966061, 0.258313, 0, -0.258313, 0.966061, 0, 1, 0)
+environment = SubResource("Environment_kyqiw")
+far = 1000.0
