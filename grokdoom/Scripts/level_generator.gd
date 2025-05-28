@@ -71,7 +71,7 @@ func generate_level(difficulty: LevelManager.difficulties)-> void:
 	# Spawn enemies
 	for i: int in range(enemy_count):
 		#var enemy := preload("res://Scenes/Enemy.tscn").instantiate()
-		var enemy := preload("res://Scenes/ZombieEnemy.tscn").instantiate()
+		var enemy := preload("res://Scenes/ZombierEnemy.tscn").instantiate()
 		LevelManager.enemyCount += 1
 		enemy.name = "Enemy" + str(LevelManager.enemyCount)
 		enemy.position = get_random_position()
