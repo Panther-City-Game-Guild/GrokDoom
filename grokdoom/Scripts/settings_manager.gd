@@ -9,6 +9,7 @@ var master_volume := 70.0
 var music_volume := 20.0
 var voices_volume := 50.0
 var sfx_volume := 30.0
+var mouse_look_sensitivity := 1.0
 var last_difficulty := LevelManager.difficulty
 
 
@@ -32,25 +33,30 @@ func loadSettings() -> void:
 	file.close()
 	
 	# DATA VALIDATION
-	# Set the master_volume
+	# Set master_volume
 	if data.has("master_volume"):
 		if data.master_volume <= 100:
 			master_volume = data.master_volume
 	
-	# Set the music_volume
+	# Set music_volume
 	if data.has("music_volume"):
 		if data.music_volume <= 100:
 			music_volume = data.music_volume
 		
-	# Set the voices_volume
+	# Set voices_volume
 	if data.has("voices_volume"):
 		if data.voices_volume <= 100:
 			voices_volume = data.voices_volume
 		
-	# Set the sfx_volume
+	# Set sfx_volume
 	if data.has("sfx_volume"):
 		if data.sfx_volume <= 100:
 			sfx_volume = data.sfx_volume
+			
+	# Set mouse_look_sensitivity
+		if data.has("mouse_look_sensitivity"):
+			if data.mouse_look_sensitivity > 0.0 && mouse_look_sensitivity <= 10.0:
+				mouse_look_sensitivity = data.mouse_look_sensitivity
 		
 	# Set the last_difficulty
 	if data.has("last_difficulty"):
@@ -66,6 +72,7 @@ func saveSettings() -> void:
 		"music_volume" = music_volume,
 		"voices_volume" = voices_volume,
 		"sfx_volume" = sfx_volume,
+		"mouse_look_sensitivity" = mouse_look_sensitivity,
 		"last_difficulty" = last_difficulty
 	}
 	
