@@ -96,7 +96,6 @@ func generate_level() -> Node:
 	# Spawn enemies
 	for i: int in range(enemy_count):
 		var enemy: Node = enemyScenes[Settings.enemy_to_use].instantiate() # Instantiate the enemy scene
-		var enemy := preload("res://Scenes/ZombierEnemy.tscn").instantiate()
 		LevelManager.enemyCount += 1
 		enemy.name = "Enemy" + str(LevelManager.enemyCount)
 		enemy.position = get_random_position()

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o8nevnddnmho"
-path.s3tc="res://.godot/imported/UVzombie1_1.png-e7603cd41b227be772d082fe18fc1e7e.s3tc.ctex"
-path.etc2="res://.godot/imported/UVzombie1_1.png-e7603cd41b227be772d082fe18fc1e7e.etc2.ctex"
+uid="uid://da5e7o04vq66s"
+path.s3tc="res://.godot/imported/UVzombie1_1.png-3705def17766d24d1d369c87efa945de.s3tc.ctex"
+path.etc2="res://.godot/imported/UVzombie1_1.png-3705def17766d24d1d369c87efa945de.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Zombie_asset/ZombieUV/UV/UVzombie1_1.png"
-dest_files=["res://.godot/imported/UVzombie1_1.png-e7603cd41b227be772d082fe18fc1e7e.s3tc.ctex", "res://.godot/imported/UVzombie1_1.png-e7603cd41b227be772d082fe18fc1e7e.etc2.ctex"]
+source_file="res://Assets/Zombie_asset/ZombieUV/UV/UVzombie1_1.png"
+dest_files=["res://.godot/imported/UVzombie1_1.png-3705def17766d24d1d369c87efa945de.s3tc.ctex", "res://.godot/imported/UVzombie1_1.png-3705def17766d24d1d369c87efa945de.etc2.ctex"]
 
 [params]
 

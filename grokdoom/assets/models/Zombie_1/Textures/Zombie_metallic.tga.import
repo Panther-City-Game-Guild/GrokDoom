@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwp0kijcgx4fg"
-path="res://.godot/imported/Zombie_metallic.tga-0a908103135b8ae2d9d90f95c71ebada.ctex"
+path="res://.godot/imported/Zombie_metallic.tga-2d469b8dd72569710c212182fbcfe425.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/Textures/Zombie_metallic.tga"
-dest_files=["res://.godot/imported/Zombie_metallic.tga-0a908103135b8ae2d9d90f95c71ebada.ctex"]
+source_file="res://Assets/Models/Zombie_1/Textures/Zombie_metallic.tga"
+dest_files=["res://.godot/imported/Zombie_metallic.tga-2d469b8dd72569710c212182fbcfe425.ctex"]
 
 [params]
 

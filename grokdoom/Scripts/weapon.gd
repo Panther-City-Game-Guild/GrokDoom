@@ -69,7 +69,7 @@ func fire():
 							doDamage(target)
 							totalDmg += damage
 							# TODO: Play a shotgun fire sound
-				print("Fired shotgun at ", target.name, " for ", totalDmg, " damage.")
+							print("Fired shotgun at ", target.name, " for ", totalDmg, " damage.")
 	player.update_hud()  # Update HUD after ammo change
 
 

@@ -2,21 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn316uln5m1qx"
-path.s3tc="res://.godot/imported/Zombie@Z_Idle_0.png-3dd946cde4b6d3815ee885829e602eda.s3tc.ctex"
-path.etc2="res://.godot/imported/Zombie@Z_Idle_0.png-3dd946cde4b6d3815ee885829e602eda.etc2.ctex"
+uid="uid://cjuo3t0oc3d5k"
+path.s3tc="res://.godot/imported/Zombie2_0.png-8635576f72e2988395bd25814c85bc65.s3tc.ctex"
+path.etc2="res://.godot/imported/Zombie2_0.png-8635576f72e2988395bd25814c85bc65.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "1e7368bc3ee8668f3195af9423a81385"
-}
 
 [deps]
 
-source_file="res://Assets/Models/Zombie_1/Animations/Zombie@Z_Idle_0.png"
-dest_files=["res://.godot/imported/Zombie@Z_Idle_0.png-3dd946cde4b6d3815ee885829e602eda.s3tc.ctex", "res://.godot/imported/Zombie@Z_Idle_0.png-3dd946cde4b6d3815ee885829e602eda.etc2.ctex"]
+source_file="res://Assets/Models/Zombie_1/FBXs/Zombie2_0.png"
+dest_files=["res://.godot/imported/Zombie2_0.png-8635576f72e2988395bd25814c85bc65.s3tc.ctex", "res://.godot/imported/Zombie2_0.png-8635576f72e2988395bd25814c85bc65.etc2.ctex"]
 
 [params]
 

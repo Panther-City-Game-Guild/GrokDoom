@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ctcjyxfn5mjv4"
-path="res://.godot/imported/Zombie@Z_Walk_InPlace.FBX-6324b2fa01b740e12ce1a79f8e5e162d.scn"
+path="res://.godot/imported/Zombie@Z_Walk_InPlace.FBX-da3f1a6da125e108a7c701c411e33976.scn"
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/Animations/Zombie@Z_Walk_InPlace.FBX"
-dest_files=["res://.godot/imported/Zombie@Z_Walk_InPlace.FBX-6324b2fa01b740e12ce1a79f8e5e162d.scn"]
+source_file="res://Assets/Models/Zombie_1/Animations/Zombie@Z_Walk_InPlace.FBX"
+dest_files=["res://.godot/imported/Zombie@Z_Walk_InPlace.FBX-da3f1a6da125e108a7c701c411e33976.scn"]
 
 [params]
 

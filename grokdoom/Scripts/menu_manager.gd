@@ -44,12 +44,16 @@ func _ready() -> void:
 	setFocus() # Set the focus on an appropriate button
 
 
-# Called every render frame
-func _process(delta: float) -> void:
+# Called when InputEvents are detected
+func _input(event: InputEvent) -> void:
+	if !event.is_pressed() && event.is_echo():
+		return
+	
 	# If user just pressed "ui_cancel" (Escape)
-	if Input.is_action_just_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
 		# If the MainMenu is visible, decide which menu to display
-		if self.visible:
+		if visible:
 			if LevelManager.inProgress:
 				hide()
 				get_tree().paused = false # Unpause the SceneTree
@@ -68,12 +72,29 @@ func _process(delta: float) -> void:
 					setMenu(menuTypes.DIFFICULTY)
 		# If the MainMenu is not visible, show it
 		else:
-			showMenu()
+			show()
 			setFocus()
 			if LevelManager.inProgress:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true # Pause the SceneTree
 	
+	# If user pressed "release_mouse" (BackSlash)( \ )
+	if event.is_action_pressed("release_mouse"):
+		get_viewport().set_input_as_handled()
+		if LevelManager.inProgress: # Allow the user to release or capture the mouse as desired when a game is running
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: # If the mouse is captured, release it
+				get_tree().paused = true
+				show()
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			
+			else: # If the mouse is loose, capture it
+				get_tree().paused = false
+				hide()
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+# Called every render frame
+func _process(delta: float) -> void:
 	# If the timer is running, see if it's run long enough
 	if timerRunning:
 		if time < autoStartTime:
@@ -82,11 +103,6 @@ func _process(delta: float) -> void:
 		else:
 			# Emulate Start button being pressed (sort of)
 			_on_StartButton_pressed()
-
-
-# Called to show the Main Menu
-func showMenu() -> void:
-	show()
 
 
 func hideMenus() -> void:
