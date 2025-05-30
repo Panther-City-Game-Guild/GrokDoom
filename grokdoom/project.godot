@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="GrokDoom"
-run/main_scene="uid://dulvd8qirkpdg"
+run/main_scene="uid://bphd2irl32e3l"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Settings="*res://Scripts/settings_manager.gd"
 LevelManager="*res://Scripts/level_manager.gd"
-LevelGenerator="*res://Scripts/level_generator.gd"
-SettingsManager="*res://Scripts/settings_manager.gd"
 AudioManager="*res://Scripts/audio_manager.gd"
+MenuManager="*res://Scenes/MenuManager.tscn"
 
 [display]
 

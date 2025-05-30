@@ -1,0 +1,247 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxvcapvd6vdla"]
+
+[ext_resource type="Script" uid="uid://cn5itnv324w24" path="res://Scripts/settings_menu.gd" id="1_7qo6q"]
+
+[node name="SettingsWindow" type="Panel"]
+custom_minimum_size = Vector2(300, 280)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -122.5
+offset_right = 150.0
+offset_bottom = 122.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7qo6q")
+
+[node name="VolumeOptions" type="Label" parent="."]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 35.0
+size_flags_vertical = 0
+text = "Volume Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "X"
+metadata/_edit_lock_ = true
+
+[node name="MasterGroup" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -105.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="MasterGroup"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+offset_left = 10.0
+offset_right = 90.0
+offset_bottom = 35.0
+size_flags_horizontal = 0
+text = "Master"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HSlider" type="HSlider" parent="MasterGroup"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_right = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+tick_count = 10
+metadata/_edit_lock_ = true
+
+[node name="Volume" type="Label" parent="MasterGroup"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "100"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MusicGroup" type="Panel" parent="."]
+layout_mode = 2
+offset_top = 70.0
+offset_right = 300.0
+offset_bottom = 105.0
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="MusicGroup"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+offset_left = 10.0
+offset_right = 90.0
+offset_bottom = 35.0
+size_flags_horizontal = 0
+text = "Music"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HSlider" type="HSlider" parent="MusicGroup"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_right = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+tick_count = 10
+metadata/_edit_lock_ = true
+
+[node name="Volume" type="Label" parent="MusicGroup"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "100"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VoiceGroup" type="Panel" parent="."]
+layout_mode = 2
+offset_top = 105.0
+offset_right = 300.0
+offset_bottom = 140.0
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="VoiceGroup"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+offset_left = 10.0
+offset_right = 90.0
+offset_bottom = 35.0
+size_flags_horizontal = 0
+text = "Voices"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HSlider" type="HSlider" parent="VoiceGroup"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_right = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+tick_count = 10
+metadata/_edit_lock_ = true
+
+[node name="Volume" type="Label" parent="VoiceGroup"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "100"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SFXGroup" type="Panel" parent="."]
+layout_mode = 2
+offset_top = 140.0
+offset_right = 300.0
+offset_bottom = 175.0
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="SFXGroup"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+offset_left = 10.0
+offset_right = 90.0
+offset_bottom = 35.0
+size_flags_horizontal = 0
+text = "Sound FX"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HSlider" type="HSlider" parent="SFXGroup"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_right = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+tick_count = 10
+metadata/_edit_lock_ = true
+
+[node name="Volume" type="Label" parent="SFXGroup"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 35.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "100"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="GroupHint" type="Label" parent="."]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 175.0
+offset_right = 290.0
+offset_bottom = 280.0
+autowrap_mode = 3
+metadata/_edit_lock_ = true
