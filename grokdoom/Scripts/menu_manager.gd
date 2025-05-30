@@ -1,20 +1,10 @@
 extends CanvasLayer
 
-# Signal(s)
-#signal StartGame
-
 # Enum(s)
-enum menuTypes {
-	NONE,
-	MAIN,
-	DIFFICULTY,
-	READY,
-	SETTINGS
-}
+enum menuTypes { NONE, MAIN, DIFFICULTY, READY, SETTINGS }
 
 # Variables
 var menu := menuTypes.MAIN
-var lastMenu := menuTypes.MAIN
 var gameReady := false
 var autoStartTime := 5.0
 var time := 0.0
@@ -23,16 +13,16 @@ var timerRunning := false
 # Menu Handles
 @onready var menus: Dictionary[menuTypes, Control] = {
 	menuTypes.MAIN: $TitleMenu,
-	menuTypes.DIFFICULTY: $ChallengeMenu,
+	menuTypes.DIFFICULTY: $DifficultyMenu,
 	menuTypes.READY: $ReadyMenu,
 	menuTypes.SETTINGS: $SettingsWindow
 }
 
 # Menu Buttons & Label(s) Handles
 @onready var newGameButton := $TitleMenu/NewGameButton
-@onready var easyButton := $ChallengeMenu/EasyButton
-@onready var normalButton := $ChallengeMenu/NormalButton
-@onready var hardButton := $ChallengeMenu/HardButton
+@onready var easyButton := $DifficultyMenu/EasyButton
+@onready var normalButton := $DifficultyMenu/NormalButton
+@onready var hardButton := $DifficultyMenu/HardButton
 @onready var startButton := $ReadyMenu/StartButton
 @onready var startingLabel := $ReadyMenu/StartingLabel
 

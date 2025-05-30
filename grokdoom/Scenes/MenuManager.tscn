@@ -33,7 +33,7 @@ text = "Settings"
 layout_mode = 2
 text = "Exit"
 
-[node name="ChallengeMenu" type="VBoxContainer" parent="."]
+[node name="DifficultyMenu" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
@@ -48,24 +48,24 @@ offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ChallengeMenu"]
+[node name="Label" type="Label" parent="DifficultyMenu"]
 layout_mode = 2
 text = "Choose a Difficulty
 "
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="EasyButton" type="Button" parent="ChallengeMenu"]
+[node name="EasyButton" type="Button" parent="DifficultyMenu"]
 layout_mode = 2
 text = "Easy"
 metadata/_edit_lock_ = true
 
-[node name="NormalButton" type="Button" parent="ChallengeMenu"]
+[node name="NormalButton" type="Button" parent="DifficultyMenu"]
 layout_mode = 2
 text = "Normal"
 metadata/_edit_lock_ = true
 
-[node name="HardButton" type="Button" parent="ChallengeMenu"]
+[node name="HardButton" type="Button" parent="DifficultyMenu"]
 layout_mode = 2
 text = "Hard"
 metadata/_edit_lock_ = true
@@ -112,7 +112,7 @@ offset_bottom = 140.0
 [connection signal="pressed" from="TitleMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="TitleMenu/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="TitleMenu/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="ChallengeMenu/EasyButton" to="." method="_on_EasyButton_pressed"]
-[connection signal="pressed" from="ChallengeMenu/NormalButton" to="." method="_on_NormalButton_pressed"]
-[connection signal="pressed" from="ChallengeMenu/HardButton" to="." method="_on_HardButton_pressed"]
+[connection signal="pressed" from="DifficultyMenu/EasyButton" to="." method="_on_EasyButton_pressed"]
+[connection signal="pressed" from="DifficultyMenu/NormalButton" to="." method="_on_NormalButton_pressed"]
+[connection signal="pressed" from="DifficultyMenu/HardButton" to="." method="_on_HardButton_pressed"]
 [connection signal="pressed" from="ReadyMenu/StartButton" to="." method="_on_StartButton_pressed"]

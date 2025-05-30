@@ -42,25 +42,10 @@ func loadSettings() -> void:
 		for i in data.volumes.keys(): # Convert keys in data to integers
 			dataDup[int(i)] = data.volumes[i]
 		
-		if dataDup.has(VolumeTypes.MASTER): # Master
-			print("data has volumes.master")
-			if typeof(dataDup[VolumeTypes.MASTER]) == TYPE_FLOAT && dataDup[VolumeTypes.MASTER] >= MIN_VOLUME && dataDup[VolumeTypes.MASTER] <= MAX_VOLUME:
-				volumes[VolumeTypes.MASTER] = dataDup[VolumeTypes.MASTER] # If incoming value is a float between MIN and MAX, set it!
-		
-		if dataDup.has(VolumeTypes.MUSIC): # Music
-			print("data has volumes.music")
-			if typeof(dataDup[VolumeTypes.MUSIC]) == TYPE_FLOAT && dataDup[VolumeTypes.MUSIC] >= MIN_VOLUME && dataDup[VolumeTypes.MUSIC] <= MAX_VOLUME:
-				volumes[VolumeTypes.MUSIC] = dataDup[VolumeTypes.MUSIC] # If incoming value is a float between MIN and MAX, set it!
-		
-		if dataDup.has(VolumeTypes.VOICE): # Voices
-			print("data has volumes.voice")
-			if typeof(dataDup[VolumeTypes.VOICE]) == TYPE_FLOAT && dataDup[VolumeTypes.VOICE] >= MIN_VOLUME && dataDup[VolumeTypes.VOICE] <= MAX_VOLUME:
-				volumes[VolumeTypes.VOICE] = dataDup[VolumeTypes.VOICE] # If incoming value is a float between MIN and MAX, set it!
-		
-		if dataDup.has(VolumeTypes.SFX): # Sound FX
-			print("data has volumes.sfx")
-			if typeof(dataDup[VolumeTypes.SFX]) == TYPE_FLOAT && dataDup[VolumeTypes.SFX] >= MIN_VOLUME && dataDup[VolumeTypes.SFX] <= MAX_VOLUME:
-				volumes[VolumeTypes.SFX] = dataDup[VolumeTypes.SFX] # If incoming value is a float between MIN and MAX, set it!
+		for key in dataDup.keys(): # If the data fits parameters and the key matches the enum, set the data
+			if dataDup[key] is float && dataDup[key] >= MIN_VOLUME && dataDup[key] <= MAX_VOLUME:
+				if key in VolumeTypes.values():
+					volumes[key as VolumeTypes] = dataDup[key]
 	
 	# Set mouse_look
 	if data.has("mouse_look"):
