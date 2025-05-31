@@ -25,6 +25,7 @@ var timerRunning := false
 @onready var hardButton := $DifficultyMenu/HardButton
 @onready var startButton := $ReadyMenu/StartButton
 @onready var startingLabel := $ReadyMenu/StartingLabel
+@onready var exitButton := $TitleMenu/ExitButton
 
 
 # Called when the node enters the scene tree for the first time
@@ -32,6 +33,9 @@ func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS # Set this node so it does not stop processing (useful for pausing/unpausing the game)
 	setMenu(menuTypes.MAIN) # Display the title menu
 	setFocus() # Set the focus on an appropriate button
+	
+	if OS.get_name() == "Web":
+		exitButton.hide() # If playing the web version, hide the Exit button
 
 
 # Called when InputEvents are detected
