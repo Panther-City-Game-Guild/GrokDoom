@@ -13,6 +13,7 @@ config_version=5
 config/name="GrokDoom"
 run/main_scene="uid://bphd2irl32e3l"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/image="uid://066ibntf1kot"
 config/icon="res://icon.svg"
 
 [autoload]
