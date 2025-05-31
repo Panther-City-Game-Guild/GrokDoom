@@ -17,7 +17,6 @@ var limp_frequency: float = 2.0   # Speed of the limp cycle (higher = faster lim
 # Called when the node first enters the scene tree
 func _ready():
 	self.add_to_group("enemies")
-	player = get_node("../Player")
 	killPoints = calcScoreValue()
 
 
@@ -45,7 +44,13 @@ func _physics_process(delta):
 		#	rotation = Vector3(0, angle, 0)  # Rotate only around Y to face the player
 		
 		# Face the player Simple method
-		look_at(player.global_transform.origin, Vector3.UP)
+		look_at(player.global_transform.origin, Vector3.UP) # NOTE:  This sometimes causes error (see below)
+		# BUG: 
+		#	E 0:00:06:946   zombie_enemy.gd:47 @ _physics_process(): Node origin and target are in the same position, look_at() failed.
+  		#	<C++ Error>   Condition "p_pos.is_equal_approx(p_target)" is true.
+  		#	<C++ Source>  scene/3d/node_3d.cpp:1067 @ look_at_from_position()
+  		#	<Stack Trace> zombie_enemy.gd:47 @ _physics_process()
+
 		
 		#Limp
 		if velocity.length() > 0:

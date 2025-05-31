@@ -1,75 +1,91 @@
 extends Node
 
-# Settings file path
-const SETTINGS_FILE := "user://settings.dat"
-const DEBUG := true
+const SETTINGS_FILE := "user://settings.dat" # Settings file path
+const DEBUG := true # Do I log debug lines?
+enum VolumeTypes { MASTER, MUSIC, VOICE, SFX }
 
-# Volume Settings
-var master_volume := 70.0
-var music_volume := 20.0
-var voices_volume := 50.0
-var sfx_volume := 30.0
-var last_difficulty := LevelManager.difficulty
+# Settings constraints
+const MAX_VOLUME := 100.0 # Maximum volume setting
+const MIN_VOLUME := 0.0 # Minimum volume setting
+const MAX_MOUSELOOK := 1.3 # Maximum mouse look sensitivity
+const MIN_MOUSELOOK := 0.1 # Minimum mouse look sensitivity
+# Settings
+var volumes: Dictionary[VolumeTypes, float] = {
+	VolumeTypes.MASTER: 70.0, # Default value should be mid-high so players can hear without being overwhelmed
+	VolumeTypes.MUSIC: 20.0, # Keep default music low to not hurt players on first load
+	VolumeTypes.VOICE: 50.0, # Default mid range
+	VolumeTypes.SFX: 60.0 # Default mid-high
+}
+var mouse_look := 0.5 # Default to MIN value
+var last_difficulty := LevelManager.Difficulties.NORMAL # Level Difficulty: Default to Normal
+var enemy_to_use := Enemy.EnemyTypes.CAPSULE # Which type of enemies to load
 
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	# If a settings file exists, load the saved settings
 	if FileAccess.file_exists(SETTINGS_FILE):
-		loadSettings()
-	# Otherwise, create a settings file for the next time
+		loadSettings() # If a settings file exists, load the saved settings
 	else:
-		saveSettings()
+		saveSettings() # Otherwise, create a settings file for the next time
 
 
 # Called to load the saved settings
 func loadSettings() -> void:
 	var file := FileAccess.open(SETTINGS_FILE, FileAccess.READ)
 	var data: Dictionary = JSON.parse_string(file.get_as_text())
-	
-	if data && DEBUG:
-		print("Settings loaded: ", data)
 	file.close()
 	
 	# DATA VALIDATION
-	# Set the master_volume
-	if data.has("master_volume"):
-		if data.master_volume <= 100:
-			master_volume = data.master_volume
+	# Set volumes
+	if data.has("volumes"):
+		var dataDup = {}
+		for i in data.volumes.keys(): # Convert keys in data to integers
+			dataDup[int(i)] = data.volumes[i]
+		
+		for key in dataDup.keys(): # If the data fits parameters and the key matches the enum, set the data
+			if dataDup[key] is float && dataDup[key] >= MIN_VOLUME && dataDup[key] <= MAX_VOLUME:
+				if key in VolumeTypes.values():
+					volumes[key as VolumeTypes] = dataDup[key]
 	
-	# Set the music_volume
-	if data.has("music_volume"):
-		if data.music_volume <= 100:
-			music_volume = data.music_volume
-		
-	# Set the voices_volume
-	if data.has("voices_volume"):
-		if data.voices_volume <= 100:
-			voices_volume = data.voices_volume
-		
-	# Set the sfx_volume
-	if data.has("sfx_volume"):
-		if data.sfx_volume <= 100:
-			sfx_volume = data.sfx_volume
-		
+	# Set mouse_look
+	if data.has("mouse_look"):
+		if typeof(data.mouse_look) == TYPE_FLOAT && data.mouse_look >= MIN_MOUSELOOK && mouse_look <= MAX_MOUSELOOK:
+			mouse_look = data.mouse_look # If incoming value is a float between 0.5 and 1.25, set it!
+	
 	# Set the last_difficulty
 	if data.has("last_difficulty"):
-		if data.last_difficulty == LevelManager.difficulties.EASY || data.last_difficulty == LevelManager.difficulties.NORMAL || data.last_difficulty == LevelManager.difficulties.HARD:
-			last_difficulty = data.last_difficulty
+		for type in LevelManager.Difficulties.values():
+			if data.last_difficulty == type:
+				last_difficulty = data.last_difficulty
+	
+	if data.has("enemy_to_use"):
+		for type in Enemy.EnemyTypes.values():
+			if data.enemy_to_use == type:
+				enemy_to_use = data.enemy_to_use
+	
+	if data && DEBUG:
+		printSettingsParse(data)
 
 
 # Called to save the current settings
 func saveSettings() -> void:
 	var file := FileAccess.open(SETTINGS_FILE, FileAccess.WRITE)
 	var data := {
-		"master_volume" = master_volume,
-		"music_volume" = music_volume,
-		"voices_volume" = voices_volume,
-		"sfx_volume" = sfx_volume,
-		"last_difficulty" = last_difficulty
+		"volumes" = volumes.duplicate(),
+		"mouse_look" = mouse_look,
+		"last_difficulty" = last_difficulty,
+		"enemy_to_use" = enemy_to_use
 	}
 	
 	file.store_string(JSON.stringify(data))
 	file.close()
 	if data && DEBUG:
-		print("Settings saved: ", data)
+		print("Settings: Data saved: ", JSON.stringify(data))
+
+
+func printSettingsParse(data) -> void:
+	print("Settings: Data loaded: ", data)
+	print("Settings: Volumes: ", volumes)
+	print("Settings: Mouse Look: ", mouse_look)
+	print("Settings: Last Difficulty: ", last_difficulty)
+	print("Settings: Enemy To Use: ", enemy_to_use)

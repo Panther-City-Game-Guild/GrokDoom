@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbkyyd7akn0fm"
-path.s3tc="res://.godot/imported/Zombie@Z_Walk1_0.png-7abfc47259c00b7b2670c42db5d54dbe.s3tc.ctex"
-path.etc2="res://.godot/imported/Zombie@Z_Walk1_0.png-7abfc47259c00b7b2670c42db5d54dbe.etc2.ctex"
+path.s3tc="res://.godot/imported/Zombie@Z_Walk1_0.png-8284c09091412ea4ebfac17b0369c48d.s3tc.ctex"
+path.etc2="res://.godot/imported/Zombie@Z_Walk1_0.png-8284c09091412ea4ebfac17b0369c48d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/Animations/Zombie@Z_Walk1_0.png"
-dest_files=["res://.godot/imported/Zombie@Z_Walk1_0.png-7abfc47259c00b7b2670c42db5d54dbe.s3tc.ctex", "res://.godot/imported/Zombie@Z_Walk1_0.png-7abfc47259c00b7b2670c42db5d54dbe.etc2.ctex"]
+source_file="res://Assets/Models/Zombie_1/Animations/Zombie@Z_Walk1_0.png"
+dest_files=["res://.godot/imported/Zombie@Z_Walk1_0.png-8284c09091412ea4ebfac17b0369c48d.s3tc.ctex", "res://.godot/imported/Zombie@Z_Walk1_0.png-8284c09091412ea4ebfac17b0369c48d.etc2.ctex"]
 
 [params]
 

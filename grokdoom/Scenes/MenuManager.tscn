@@ -1,21 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dulvd8qirkpdg"]
+[gd_scene load_steps=3 format=3 uid="uid://dulvd8qirkpdg"]
 
-[ext_resource type="Script" uid="uid://bge1phrp7abj0" path="res://Scripts/main_menu.gd" id="1_tt5f1"]
+[ext_resource type="Script" uid="uid://bge1phrp7abj0" path="res://Scripts/menu_manager.gd" id="1_4h8cu"]
+[ext_resource type="PackedScene" uid="uid://dxvcapvd6vdla" path="res://Scenes/SettingsWindow.tscn" id="2_rmr4d"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-script = ExtResource("1_tt5f1")
+[node name="MenuManager" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_4h8cu")
 
 [node name="TitleMenu" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,7 +36,6 @@ text = "Exit"
 [node name="DifficultyMenu" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -68,9 +60,9 @@ layout_mode = 2
 text = "Easy"
 metadata/_edit_lock_ = true
 
-[node name="MediumButton" type="Button" parent="DifficultyMenu"]
+[node name="NormalButton" type="Button" parent="DifficultyMenu"]
 layout_mode = 2
-text = "Medium"
+text = "Normal"
 metadata/_edit_lock_ = true
 
 [node name="HardButton" type="Button" parent="DifficultyMenu"]
@@ -81,7 +73,6 @@ metadata/_edit_lock_ = true
 [node name="ReadyMenu" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -113,9 +104,15 @@ layout_mode = 2
 text = "Start Now!"
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="TitleMenu/SettingsButton" to="." method="on_SettingsButton_pressed"]
+[node name="SettingsWindow" parent="." instance=ExtResource("2_rmr4d")]
+visible = false
+offset_top = -140.0
+offset_bottom = 140.0
+
+[connection signal="pressed" from="TitleMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="TitleMenu/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="TitleMenu/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="DifficultyMenu/EasyButton" to="." method="_on_EasyButton_pressed"]
-[connection signal="pressed" from="DifficultyMenu/MediumButton" to="." method="_on_MediumButton_pressed"]
+[connection signal="pressed" from="DifficultyMenu/NormalButton" to="." method="_on_NormalButton_pressed"]
 [connection signal="pressed" from="DifficultyMenu/HardButton" to="." method="_on_HardButton_pressed"]
 [connection signal="pressed" from="ReadyMenu/StartButton" to="." method="_on_StartButton_pressed"]

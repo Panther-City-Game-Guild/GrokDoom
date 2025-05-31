@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c54uauprjs8gx"
-path="res://.godot/imported/Zombie@Z_FallingForward.FBX-5028d2a8e3277a98244125a62d5e90ea.scn"
+path="res://.godot/imported/Zombie@Z_FallingForward.FBX-115c33cea7fad32d39a8a2edccd4b3fa.scn"
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/Animations/Zombie@Z_FallingForward.FBX"
-dest_files=["res://.godot/imported/Zombie@Z_FallingForward.FBX-5028d2a8e3277a98244125a62d5e90ea.scn"]
+source_file="res://Assets/Models/Zombie_1/Animations/Zombie@Z_FallingForward.FBX"
+dest_files=["res://.godot/imported/Zombie@Z_FallingForward.FBX-115c33cea7fad32d39a8a2edccd4b3fa.scn"]
 
 [params]
 

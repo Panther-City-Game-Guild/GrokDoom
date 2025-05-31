@@ -1,29 +1,22 @@
-extends Control
-
-# Signal(s)
-#signal StartGame
+extends CanvasLayer
 
 # Enum(s)
-enum menus {
-	TITLE,
-	DIFFICULTY,
-	READY,
-	SETTINGS
-}
+enum menuTypes { NONE, MAIN, DIFFICULTY, READY, SETTINGS }
 
 # Variables
-var menu := menus.TITLE
-var lastMenu := menus.TITLE
+var menu := menuTypes.MAIN
 var gameReady := false
 var autoStartTime := 5.0
 var time := 0.0
 var timerRunning := false
 
 # Menu Handles
-@onready var titleMenu := $TitleMenu
-@onready var difficultyMenu := $DifficultyMenu
-@onready var readyMenu := $ReadyMenu
-@onready var settingsMenu := $SettingsMenu
+@onready var menus: Dictionary[menuTypes, Control] = {
+	menuTypes.MAIN: $TitleMenu,
+	menuTypes.DIFFICULTY: $DifficultyMenu,
+	menuTypes.READY: $ReadyMenu,
+	menuTypes.SETTINGS: $SettingsWindow
+}
 
 # Menu Buttons & Label(s) Handles
 @onready var newGameButton := $TitleMenu/NewGameButton
@@ -37,42 +30,61 @@ var timerRunning := false
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS # Set this node so it does not stop processing (useful for pausing/unpausing the game)
-	setMenu(menus.TITLE) # Display the title menu
+	setMenu(menuTypes.MAIN) # Display the title menu
 	setFocus() # Set the focus on an appropriate button
 
 
-# Called every render frame
-func _process(delta: float) -> void:
+# Called when InputEvents are detected
+func _input(event: InputEvent) -> void:
+	if !event.is_pressed() && event.is_echo():
+		return
+	
 	# If user just pressed "ui_cancel" (Escape)
-	if Input.is_action_just_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
 		# If the MainMenu is visible, decide which menu to display
-		if self.visible:
+		if visible:
 			if LevelManager.inProgress:
-				hideMenu()
+				hide()
 				get_tree().paused = false # Unpause the SceneTree
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				# BUG: When starting a new game while a game is running, closing the menu once does not unfreeze the mouse.  That could be from pausing the scene tree.
 				return
 			match menu:
-				menus.SETTINGS:
-					SettingsManager.saveSettings()
-					setMenu(menus.TITLE)
-				menus.DIFFICULTY:
-					setMenu(menus.TITLE)
-				menus.READY:
+				menuTypes.SETTINGS:
+					Settings.saveSettings()
+					setMenu(menuTypes.MAIN)
+				menuTypes.DIFFICULTY:
+					setMenu(menuTypes.MAIN)
+				menuTypes.READY:
 					timerRunning = false
 					time = 0.0
-					setMenu(menus.DIFFICULTY)
+					setMenu(menuTypes.DIFFICULTY)
 		# If the MainMenu is not visible, show it
 		else:
-			showMenu()
+			show()
 			setFocus()
 			if LevelManager.inProgress:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true # Pause the SceneTree
-
-
 	
+	# If user pressed "release_mouse" (BackSlash)( \ )
+	if event.is_action_pressed("release_mouse"):
+		get_viewport().set_input_as_handled()
+		if LevelManager.inProgress: # Allow the user to release or capture the mouse as desired when a game is running
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: # If the mouse is captured, release it
+				get_tree().paused = true
+				show()
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			
+			else: # If the mouse is loose, capture it
+				get_tree().paused = false
+				hide()
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+# Called every render frame
+func _process(delta: float) -> void:
 	# If the timer is running, see if it's run long enough
 	if timerRunning:
 		if time < autoStartTime:
@@ -83,94 +95,75 @@ func _process(delta: float) -> void:
 			_on_StartButton_pressed()
 
 
-# Called to hide the Main Menu
-func hideMenu() -> void:
-	self.visible = false
-
-
-# Called to show the Main Menu
-func showMenu() -> void:
-	self.visible = true
+func hideMenus() -> void:
+	for item in menus.values():
+		item.hide()
 
 
 # Called to change which menu is actively being shown
-func setMenu(option) -> void:
-	menu = option as menus
+func setMenu(option: menuTypes) -> void:
+	menu = option
+	hideMenus()
 	match menu:
-		menus.TITLE:
-			titleMenu.visible = true
-			difficultyMenu.visible = false
-			readyMenu.visible = false
-			settingsMenu.visible = false
-		menus.DIFFICULTY:
-			titleMenu.visible = false
-			difficultyMenu.visible = true
-			readyMenu.visible = false
-			settingsMenu.visible = false
-		menus.READY:
-			titleMenu.visible = false
-			difficultyMenu.visible = false
-			readyMenu.visible = true
-			settingsMenu.visible = false
-		menus.SETTINGS:
-			titleMenu.visible = false
-			difficultyMenu.visible = false
-			readyMenu.visible = false
-			settingsMenu.visible = true
+		menuTypes.MAIN:
+			menus[menuTypes.MAIN].show()
+		menuTypes.DIFFICULTY:
+			menus[menuTypes.DIFFICULTY].show()
+		menuTypes.READY:
+			menus[menuTypes.READY].show()
+		menuTypes.SETTINGS:
+			menus[menuTypes.SETTINGS].show()
 	setFocus()
 
 
 # Called to find and set focus on ideal button
 func setFocus() -> void:
 	match menu:
-		menus.TITLE:
+		menuTypes.MAIN:
 			newGameButton.grab_focus()
-		menus.DIFFICULTY:
-			match SettingsManager.last_difficulty:
-				LevelManager.difficulties.EASY:
+		menuTypes.DIFFICULTY:
+			match Settings.last_difficulty:
+				LevelManager.Difficulties.EASY:
 					easyButton.grab_focus()
-				LevelManager.difficulties.NORMAL:
+				LevelManager.Difficulties.NORMAL:
 					normalButton.grab_focus()
-				LevelManager.difficulties.HARD:
+				LevelManager.Difficulties.HARD:
 					hardButton.grab_focus()
-		menus.READY:
+		menuTypes.READY:
 			startButton.grab_focus()
-		menus.SETTINGS:
-			settingsMenu.grabFocus()
+		menuTypes.SETTINGS:
+			menus[menuTypes.SETTINGS].grabFocus()
 
 
 # Event Handler for when the NewGameButton gets pressed
 func _on_NewGameButton_pressed():
-	setMenu(menus.DIFFICULTY)
+	setMenu(menuTypes.DIFFICULTY)
 
 
 # Event Handler for when the EasyButton gets pressed
 func _on_EasyButton_pressed():
-	SettingsManager.last_difficulty = LevelManager.difficulties.EASY
-	LevelManager.difficulty = LevelManager.difficulties.EASY
+	Settings.last_difficulty = LevelManager.Difficulties.EASY
 	gameReady = LevelManager.makeLevel()
 	if gameReady:
-		setMenu(menus.READY)
+		setMenu(menuTypes.READY)
 		timerRunning = true
 
 
 # Event Handler for when the MediumButton gets pressed
 func _on_NormalButton_pressed():
-	SettingsManager.last_difficulty = LevelManager.difficulties.NORMAL
-	LevelManager.difficulty = LevelManager.difficulties.NORMAL
+	Settings.last_difficulty = LevelManager.Difficulties.NORMAL
 	gameReady = LevelManager.makeLevel()
 	if gameReady:
-		setMenu(menus.READY)
+		setMenu(menuTypes.READY)
 		timerRunning = true
 
 
 # Event Handler for when the HardButton gets pressed
 func _on_HardButton_pressed() -> void:
-	SettingsManager.last_difficulty = LevelManager.difficulties.HARD
-	LevelManager.difficulty = LevelManager.difficulties.HARD
+	Settings.last_difficulty = LevelManager.Difficulties.HARD
 	gameReady = LevelManager.makeLevel()
 	if gameReady:
-		setMenu(menus.READY)
+		setMenu(menuTypes.READY)
 		timerRunning = true
 
 
@@ -178,14 +171,14 @@ func _on_HardButton_pressed() -> void:
 func _on_StartButton_pressed() -> void:
 	timerRunning = false
 	time = 0.0
-	setMenu(menus.TITLE)
-	hideMenu()
+	setMenu(menuTypes.MAIN)
+	hide()
 	LevelManager.startGame()
 	get_tree().paused = false # Unpause the SceneTree
 
 
 func _on_SettingsButton_pressed() -> void:
-	setMenu(menus.SETTINGS)
+	setMenu(menuTypes.SETTINGS)
 
 
 # Event Handler for when the ExitButton gets pressed
@@ -196,5 +189,5 @@ func _on_ExitButton_pressed() -> void:
 
 # Called when the CloseButton is pressed
 func _on_CloseButton_pressed() -> void:
-	SettingsManager.saveSettings()
-	setMenu(menus.TITLE)
+	Settings.saveSettings()
+	setMenu(menuTypes.MAIN)

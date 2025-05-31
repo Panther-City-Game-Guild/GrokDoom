@@ -1,5 +1,7 @@
-extends CharacterBody3D
+class_name Enemy extends CharacterBody3D
 
+enum EnemyTypes { CAPSULE, ZOMBIE, ZOMBIER }
+@export var enemyType := EnemyTypes.CAPSULE
 var speed := randf_range(1.5, 2.5) # Random movement speed, never "quite" as fast as the player (3.0)
 var health := randi_range(10, 50)  # Random amount of health
 var damage := randi_range(1, 10) # Random amount of damage to do to the player
@@ -16,7 +18,6 @@ var scalar := 1.0
 # Called when the node first enters the scene tree
 func _ready():
 	self.add_to_group("enemies")
-	player = get_node("../Player")
 	killPoints = calcScoreValue()
 
 

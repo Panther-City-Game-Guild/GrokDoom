@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cc8rydufxxuwv"
-path="res://.godot/imported/Zombie3.FBX-d17338a3e0e9fb71a98cb6dee0d8df07.scn"
+path="res://.godot/imported/Zombie3.FBX-edfc612d318c81e942c7dab38eaed7d0.scn"
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/FBXs/Zombie3.FBX"
-dest_files=["res://.godot/imported/Zombie3.FBX-d17338a3e0e9fb71a98cb6dee0d8df07.scn"]
+source_file="res://Assets/Models/Zombie_1/FBXs/Zombie3.FBX"
+dest_files=["res://.godot/imported/Zombie3.FBX-edfc612d318c81e942c7dab38eaed7d0.scn"]
 
 [params]
 

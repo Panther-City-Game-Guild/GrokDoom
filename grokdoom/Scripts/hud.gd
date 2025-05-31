@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name HUD extends CanvasLayer
 
 func update_health(health):
 	$HealthLabel.text = "Health: " + str(health)

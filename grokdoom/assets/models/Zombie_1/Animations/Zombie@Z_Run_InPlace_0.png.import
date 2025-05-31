@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://51ixnffwglw2"
-path.s3tc="res://.godot/imported/Zombie@Z_Run_InPlace_0.png-7edb8f8b6594a31df1bb11d8686865a8.s3tc.ctex"
-path.etc2="res://.godot/imported/Zombie@Z_Run_InPlace_0.png-7edb8f8b6594a31df1bb11d8686865a8.etc2.ctex"
+path.s3tc="res://.godot/imported/Zombie@Z_Run_InPlace_0.png-0912319936ad0c2c29ebb43450747142.s3tc.ctex"
+path.etc2="res://.godot/imported/Zombie@Z_Run_InPlace_0.png-0912319936ad0c2c29ebb43450747142.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/models/Zombie_1/Animations/Zombie@Z_Run_InPlace_0.png"
-dest_files=["res://.godot/imported/Zombie@Z_Run_InPlace_0.png-7edb8f8b6594a31df1bb11d8686865a8.s3tc.ctex", "res://.godot/imported/Zombie@Z_Run_InPlace_0.png-7edb8f8b6594a31df1bb11d8686865a8.etc2.ctex"]
+source_file="res://Assets/Models/Zombie_1/Animations/Zombie@Z_Run_InPlace_0.png"
+dest_files=["res://.godot/imported/Zombie@Z_Run_InPlace_0.png-0912319936ad0c2c29ebb43450747142.s3tc.ctex", "res://.godot/imported/Zombie@Z_Run_InPlace_0.png-0912319936ad0c2c29ebb43450747142.etc2.ctex"]
 
 [params]
 

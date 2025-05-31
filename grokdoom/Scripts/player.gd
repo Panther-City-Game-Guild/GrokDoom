@@ -3,12 +3,11 @@ class_name Player extends CharacterBody3D
 
 @export var currentWeapon := Weapon.weapons.PISTOL
 @export var speed := 5.0
-@export var mouse_sensitivity := 0.1
 @export var health := 100
 @export var shotgun_ammo := 5  # Starting with 5 shells
-@onready var hud: CanvasLayer = get_node("../HUD")
 @onready var pistol := $WeaponHolder/Pistol
 @onready var shotgun := $WeaponHolder/Shotgun
+var hud: CanvasLayer
 
 
 # Called when the node enters the scene tree for the first time
@@ -22,7 +21,7 @@ func _ready() -> void:
 func _input(event) -> void:
 	# Mouse movement; player rotation
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
+		rotate_y(deg_to_rad(-event.relative.x * Settings.mouse_look))
 	
 	# Switching weapons
 	if event.is_action_pressed("weapon_switch"):
